@@ -1,0 +1,6 @@
+.translate-show {
+  transform: translateY(0%);
+}
+.translate-hide {
+  transform: translateY(-100%);
+}
