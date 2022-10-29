@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import Alert from './Alert';
+import { useAuth } from '../../contexts/AuthContext';
+import Alert from '../Alert/Alert';
 
 function Login() {
   const emailRef = useRef();
@@ -9,7 +9,8 @@ function Login() {
 
   const { login } = useAuth();
 
-  const [error, setError] = useState('');
+  const [alertType, setAlertType] = useState('');
+  const [message, setMessage] = useState('');
   const [passwordShow, setpasswordShow] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -19,12 +20,13 @@ function Login() {
     e.preventDefault();
 
     try {
-      setError('');
+      setMessage('');
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
       navigate('/home');
     } catch {
-      setError('Failed to log in');
+      setAlertType('Warning');
+      setMessage('Failed to log in');
     }
     setLoading(false);
   }
@@ -34,7 +36,12 @@ function Login() {
   };
   return (
     <>
-      <Alert error={error} setError={setError} />
+      <Alert
+        message={message}
+        setMessage={setMessage}
+        alertType={alertType}
+        setAlertType={setAlertType}
+      />
       <div className='flex flex-col items-center justify-center h-full w-full '>
         <div className='bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full  max-w-sm p-10 mt-16'>
           <p
@@ -46,7 +53,7 @@ function Login() {
             Login to your account
           </p>
           <p className='text-sm mt-4 font-medium leading-none text-gray-500'>
-            Dont have account?{' '}
+            Don't have account?{' '}
             <span
               tabIndex={0}
               role='link'

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { CustomLinkDashboard, CustomLinkMobile } from './CustomLinks';
-import './Navigation.css';
+import { CustomLinkDashboard, CustomLinkMobile } from '../CustomLinks';
+import './Header.css';
 
 export default function Navigation() {
   const [show, setShow] = useState(false);

@@ -1,10 +1,10 @@
 import React from 'react';
-import Navigation from './Navigation';
+import Header from '../Header/Header';
 
 export default function Map() {
   return (
     <div>
-      <Navigation />
+      <Header />
     </div>
   );
 }

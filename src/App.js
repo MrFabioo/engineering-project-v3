@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from '../contexts/AuthContext';
-import Login from './Login';
-import Register from './Register';
-import Home from './Home';
-import Map from './Map';
+import { AuthProvider } from './contexts/AuthContext';
+import Login from './components/Login/Login';
+import Register from './components/Register/Register';
+import Home from './components/Home/Home';
+import Map from './components/Map/Map';
 import './App.css';
 
 export default function App() {

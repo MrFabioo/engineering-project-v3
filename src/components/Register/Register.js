@@ -2,8 +2,8 @@
 
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import Alert from './Alert';
+import { useAuth } from '../../contexts/AuthContext';
+import Alert from '../Alert/Alert';
 
 function Register() {
   const emailRef = useRef();
@@ -12,39 +12,49 @@ function Register() {
 
   const { register } = useAuth();
 
-  const [error, setError] = useState('');
-  const [passwordShow, setpasswordShow] = useState(false);
-  const [passwordConfirmShow, setpasswordConfirmShow] = useState(false);
+  const [alertType, setAlertType] = useState('');
+  const [message, setMessage] = useState('');
+  const [passwordShow, setPasswordShow] = useState(false);
+  const [passwordConfirmShow, setPasswordConfirmShow] = useState(false);
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError('Passwords do not match!');
+      setAlertType('Warning');
+      setMessage('Passwords do not match!');
+    } else {
     }
 
     try {
-      setError('');
       setLoading(true);
       await register(emailRef.current.value, passwordRef.current.value);
+      setAlertType('Success');
+      setMessage('Welcome!!! :)');
     } catch {
-      setError('Failed to create an account');
+      setAlertType('Warning');
+      setMessage('Failed to create an account');
     }
     setLoading(false);
   }
 
   const togglePassword = () => {
-    setpasswordShow(!passwordShow);
+    setPasswordShow(!passwordShow);
   };
 
   const togglePasswordConfirm = () => {
-    setpasswordConfirmShow(!passwordConfirmShow);
+    setPasswordConfirmShow(!passwordConfirmShow);
   };
 
   return (
     <>
-      <Alert error={error} setError={setError} />
+      <Alert
+        message={message}
+        setMessage={setMessage}
+        alertType={alertType}
+        setAlertType={setAlertType}
+      />
       <div className='flex flex-col items-center justify-center h-full w-full'>
         <div className='bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full  max-w-sm p-10 mt-16'>
           <p
