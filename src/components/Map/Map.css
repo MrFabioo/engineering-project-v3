@@ -1,0 +1,10 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.mapContainer {
+  position: relative;
+  height: 80vh;
+  padding-right: 16px;
+}

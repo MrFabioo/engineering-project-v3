@@ -1,11 +1,10 @@
 import React from 'react';
-// import Navigation from './Navigation';
+import Navigation from '../Header/Header';
 
 export default function Home() {
   return (
     <div>
-      {/* <Navigation /> */}
-      Home
+      <Navigation />
     </div>
   );
 }
